@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ReplayButton : MonoBehaviour {
 
 	public void RestartPlayScene(){
-        GameManager.points = 0;
+        TapeManager.points = 0;
         SceneManager.LoadScene("Play");
     }
 }

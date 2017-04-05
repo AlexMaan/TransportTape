@@ -27,26 +27,26 @@ public class CubeObjectPrim : MonoBehaviour {
     {
         print("cliked");
 
-        if (GameManager.lastClickedObj != null && GameManager.lastClickedObj != this && GameManager.lastClickedObj.spriteRenderer.sprite == this.spriteRenderer.sprite)
+        if (TapeManager.lastClickedObj != null && TapeManager.lastClickedObj != this && TapeManager.lastClickedObj.spriteRenderer.sprite == this.spriteRenderer.sprite)
         {
-            if (GameManager.lastClickedObj.spriteRenderer.color == this.spriteRenderer.color ){
-                if (GameManager.lastClickedObj.biggness == this.biggness) {
-                    PowerBar.powerBarValue += 2 * biggness; GameManager.points += 2 * biggness;
+            if (TapeManager.lastClickedObj.spriteRenderer.color == this.spriteRenderer.color ){
+                if (TapeManager.lastClickedObj.biggness == this.biggness) {
+                    PowerBar.powerBarValue += 2 * biggness; TapeManager.points += 2 * biggness;
                     GrowUpInstance(); }
-                else { PowerBar.powerBarValue += 2; GameManager.points += 2; }
+                else { PowerBar.powerBarValue += 2; TapeManager.points += 2; }
             }
-            else { PowerBar.powerBarValue++; GameManager.points ++; }
-                Destroy(GameManager.lastClickedObj.gameObject);
+            else { PowerBar.powerBarValue++; TapeManager.points ++; }
+                Destroy(TapeManager.lastClickedObj.gameObject);
             Destroy(gameObject);
         }
-        if (GameManager.lastClickedObj != null && GameManager.lastClickedObj != this && GameManager.lastClickedObj.spriteRenderer.color == this.spriteRenderer.color && GameManager.lastClickedObj.spriteRenderer.sprite != this.spriteRenderer.sprite)
+        if (TapeManager.lastClickedObj != null && TapeManager.lastClickedObj != this && TapeManager.lastClickedObj.spriteRenderer.color == this.spriteRenderer.color && TapeManager.lastClickedObj.spriteRenderer.sprite != this.spriteRenderer.sprite)
         {
             PowerBar.powerBarValue ++;
-            GameManager.points++;
-            Destroy(GameManager.lastClickedObj.gameObject);
+            TapeManager.points++;
+            Destroy(TapeManager.lastClickedObj.gameObject);
             Destroy(gameObject);
         }
-        else GameManager.lastClickedObj = this;
+        else TapeManager.lastClickedObj = this;
     }
 
     void GrowUpInstance() {

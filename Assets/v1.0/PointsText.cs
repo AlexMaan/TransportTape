@@ -8,6 +8,6 @@ public class PointsText : MonoBehaviour {
     public Text uiText;
 
     void Update(){
-        uiText.text = "Points: " + GameManager.points.ToString();
+        uiText.text = "Points: " + TapeManager.points.ToString();
     }
 }

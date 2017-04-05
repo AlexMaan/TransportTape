@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour {
     Text text;
 
 	void Start (){
-        roundTime = FindObjectOfType<GameManager>().roundTime;
+        roundTime = FindObjectOfType<TapeManager>().roundTime;
         text = GetComponent<Text>();
         text.text = roundTime.ToString();
         InvokeRepeating("SecondsCount", 0, 1);

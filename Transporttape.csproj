@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{86FD0C51-B12B-43C8-A7CE-2090F6C4AF16}</ProjectGuid>
+    <ProjectGuid>{7386FCF0-F1DE-B780-1E2D-BD5E96508FFE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -76,19 +76,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BaseTape.cs" />
-    <Compile Include="Assets\CubeObject.cs" />
-    <Compile Include="Assets\CubeObjectPrim.cs" />
-    <Compile Include="Assets\Destroyer.cs" />
-    <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\Generator.cs" />
-    <Compile Include="Assets\PointsText.cs" />
-    <Compile Include="Assets\PowerBar.cs" />
-    <Compile Include="Assets\ReplayButton.cs" />
-    <Compile Include="Assets\ScoresText.cs" />
-    <Compile Include="Assets\SlowBar.cs" />
-    <Compile Include="Assets\SpeedDownControl.cs" />
-    <Compile Include="Assets\SpeedUpControl.cs" />
-    <Compile Include="Assets\Timer.cs" />
+    <Compile Include="Assets\Cell.cs" />
+    <Compile Include="Assets\CellGenerator.cs" />
+    <Compile Include="Assets\CellPoinerArray.cs" />
+    <Compile Include="Assets\GoodsArray.cs" />
+    <Compile Include="Assets\GoodsMixer.cs" />
+    <Compile Include="Assets\TapeManager.cs" />
+    <Compile Include="Assets\v1.0\CubeObject.cs" />
+    <Compile Include="Assets\v1.0\CubeObjectPrim.cs" />
+    <Compile Include="Assets\v1.0\Destroyer.cs" />
+    <Compile Include="Assets\v1.0\Generator.cs" />
+    <Compile Include="Assets\v1.0\PointsText.cs" />
+    <Compile Include="Assets\v1.0\PowerBar.cs" />
+    <Compile Include="Assets\v1.0\ReplayButton.cs" />
+    <Compile Include="Assets\v1.0\ScoresText.cs" />
+    <Compile Include="Assets\v1.0\SlowBar.cs" />
+    <Compile Include="Assets\v1.0\SpeedDownControl.cs" />
+    <Compile Include="Assets\v1.0\SpeedUpControl.cs" />
+    <Compile Include="Assets\v1.0\Timer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -8,6 +8,6 @@ public class ScoresText : MonoBehaviour {
     public Text text;
 
     private void Awake(){
-        text.text = GameManager.points.ToString();
+        text.text = TapeManager.points.ToString();
     }
 }

@@ -18,7 +18,7 @@ public class Generator : MonoBehaviour {
     IEnumerator PlaceItemPeriod (){
         while (true){
             PlaceItem();
-            yield return new WaitForSeconds(placePeriod * (1 / GameManager.tapeSpeed));
+            yield return new WaitForSeconds(placePeriod * (1 / TapeManager.tapeSpeed));
         }             
     }
 

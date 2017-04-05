@@ -19,13 +19,13 @@ public class SpeedUpControl : MonoBehaviour {
         slider = GetComponent<Slider>();
         sliderValue = slider.minValue;
         slider.value = sliderValue;
-        startSpeed = GameManager.tapeSpeed;
+        startSpeed = TapeManager.tapeSpeed;
     }
 
     void Update () {
 		if (slider.value != sliderValue) {
             if (slowMode) { speedDownControl.BreakSlowMode(); slowMode = false; }            
-            GameManager.tapeSpeed = startSpeed * slider.value;
+            TapeManager.tapeSpeed = startSpeed * slider.value;
             sliderValue = slider.value;
             
         }
