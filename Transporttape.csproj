@@ -79,8 +79,11 @@
     <Compile Include="Assets\Cell.cs" />
     <Compile Include="Assets\CellGenerator.cs" />
     <Compile Include="Assets\CellPoinerArray.cs" />
+    <Compile Include="Assets\ClickPicker.cs" />
+    <Compile Include="Assets\GoodParam.cs" />
     <Compile Include="Assets\GoodsArray.cs" />
     <Compile Include="Assets\GoodsMixer.cs" />
+    <Compile Include="Assets\GoodsParamsHolder.cs" />
     <Compile Include="Assets\TapeManager.cs" />
     <Compile Include="Assets\v1.0\CubeObject.cs" />
     <Compile Include="Assets\v1.0\CubeObjectPrim.cs" />
