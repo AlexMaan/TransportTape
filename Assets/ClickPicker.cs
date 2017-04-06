@@ -4,16 +4,39 @@ using UnityEngine;
 
 public class ClickPicker : MonoBehaviour {
 
-    public static List<GoodParam> clickedObjects = new List<GoodParam>();
-    public static int ClickNumb;
+    public static GoodParam active;
+    public static GoodParam lastClicked;
+    public static GoodParam beforeLastClicked;       
 
-    public List<GoodParam> viewObjects = new List<GoodParam>();
+    public static void SwithClicks(GoodParam current) {
+        if (active != null && lastClicked != null ) {
+            beforeLastClicked = lastClicked;
+            lastClicked = active;
+            active = current;
+            PlayAmins();
+        }
+        else if (active != null) {
+            lastClicked = active;
+            active = current;
+            PlayAmins();
+        }
+        else { active = current; PlayAmins(); }
+        }
 
-
-    void Update() {
-
-        viewObjects = clickedObjects;
-        //if (clickedObjects.Count > 0)
-        //    clickedObjects[clickedObjects.Count-1].gameObject.transform.localScale *= 2;
+    static void PlayAmins(){
+        active.GetComponent<Animator>().SetTrigger("idle");
+        if(lastClicked != null)
+        lastClicked.GetComponent<Animator>().SetTrigger("stop");
     }
+
+    // Preview
+    //public GoodParam activeV;
+    //public GoodParam lastClickedV;
+    //public GoodParam beforeLastClickedV;
+
+    //void Update() {
+    //    activeV = active;
+    //    lastClickedV = lastClicked;
+    //    beforeLastClickedV = beforeLastClicked;
+    //}
 }

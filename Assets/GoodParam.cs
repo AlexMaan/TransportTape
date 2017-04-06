@@ -6,10 +6,9 @@ public class GoodParam : MonoBehaviour {
 
     public int ShapeIndex;
     public int ColorIndex;
-    public int SymbolIndex;
+    public int SymbolIndex;    
     
     void Awake() {
-
         switch (SymbolIndex) {
             case 0: ShapeIndex = Random.Range(0, 8);
                 break;
@@ -26,11 +25,11 @@ public class GoodParam : MonoBehaviour {
     }
 
     void OnMouseDown() {
-        //if(ClickPicker.clicedObjects[ClickPicker.ClickNumb] != this)
         print("clicked");
-        ClickPicker.ClickNumb++;
-        ClickPicker.clickedObjects.Add(this);
-        
+        ClickPicker.SwithClicks(this);        
     }
 
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Destroyer")) Destroy(transform.parent.gameObject);
+    }
 }
