@@ -27,9 +27,5 @@ public class GoodParam : MonoBehaviour {
     void OnMouseDown() {
         print("clicked");
         ClickPicker.SwithClicks(this);        
-    }
-
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.CompareTag("Destroyer")) Destroy(transform.parent.gameObject);
-    }
+    }        
 }
