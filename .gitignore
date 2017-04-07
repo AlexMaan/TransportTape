@@ -242,3 +242,5 @@ ModelManifest.xml
 .fake/
 /Library
 /Temp
+/TransportTape.sln
+/Transporttape.csproj
