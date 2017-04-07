@@ -6,7 +6,10 @@ public class GoodParam : MonoBehaviour {
 
     public int ShapeIndex;
     public int ColorIndex;
-    public int SymbolIndex;    
+    public int SymbolIndex;
+
+    public bool greyShaped;
+    public bool greyColored;    
     
     void Awake() {
         switch (SymbolIndex) {
@@ -27,5 +30,16 @@ public class GoodParam : MonoBehaviour {
     void OnMouseDown() {
         print("clicked");
         ClickPicker.SwithClicks(this);        
-    }        
+    }
+
+    public void GreyColor() {
+        GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.6f, 0.6f, 0.7f);
+        ColorIndex = 10;
+        greyColored = true;
+    }       
+    
+    public void GreyShape() {
+        GetComponent<SpriteRenderer>().sprite = GoodsParamsHolder.shapes[15];
+        greyShaped = true;
+    } 
 }
