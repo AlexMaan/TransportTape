@@ -17,11 +17,10 @@ public class ClickPicker : MonoBehaviour {
         goodIsClicked += ClickLogic;
     }
 
-
-    public static void SwithClicks(GoodParam current) {
-        currentGood = current;
-        if (current == active && active != null) { active = null; current.GetComponent<Animator>().SetTrigger("stop"); }  
+    public static void SwithClicks(GoodParam current) {        
+        if (current == active && active != null) { active = null; lastClicked = null; beforeLastClicked = null; current.GetComponent<Animator>().SetTrigger("stop"); }  
         else {
+            currentGood = current;
             if (active != null && lastClicked != null) {
                 beforeLastClicked = lastClicked;
                 lastClicked = active;
@@ -40,18 +39,32 @@ public class ClickPicker : MonoBehaviour {
         }
     }
 
-    static void PlayAmins(){
+    static void PlayAmins() {
         active.GetComponent<Animator>().SetTrigger("idle");
         if(lastClicked != null)
         lastClicked.GetComponent<Animator>().SetTrigger("stop");
     }
 
+    IEnumerator CombineGoodFly(GoodParam flyer) {
+        while (Vector3.Distance(flyer.transform.position, active.transform.position) > 1) {
+            flyer.transform.position = Vector3.Lerp(flyer.transform.position, active.transform.position, 0.2f);
+            yield return null;
+        }
+        Destroy(flyer.gameObject);
+        active = null;
+        currentGood.GetComponent<Animator>().SetTrigger("stop");
+    }
+
     void ClickLogic() {
         if (lastClicked != null) {
-            if (active.ShapeIndex == lastClicked.ShapeIndex && active.ColorIndex == lastClicked.ColorIndex) SymbolSwith(3);
-            else if (active.ShapeIndex == lastClicked.ShapeIndex) SymbolSwith(2);
-            else if (active.ColorIndex == lastClicked.ColorIndex) SymbolSwith(1);
-            else if (active.ShapeIndex != lastClicked.ShapeIndex && active.ColorIndex != lastClicked.ColorIndex ) SymbolSwith(0);
+            int i = 0;
+            if (active.ShapeIndex == lastClicked.ShapeIndex && active.ColorIndex == lastClicked.ColorIndex) i = 1;
+            else if (active.ShapeIndex == lastClicked.ShapeIndex) i = active.greyColored || lastClicked.greyColored ? 0 : 2;
+            else if (active.ColorIndex == lastClicked.ColorIndex) i = active.greyShaped  || lastClicked.greyShaped  ? 0 : 3;
+            else if (active.ShapeIndex != lastClicked.ShapeIndex && active.ColorIndex != lastClicked.ColorIndex)
+                 if (!active.greyShaped && !active.greyColored && !lastClicked.greyShaped && !lastClicked.greyColored) i = 4;
+                 else i = 0;
+            SymbolSwith(i);
         }
     }
     void SymbolSwith(int matchIndex) {
@@ -68,28 +81,36 @@ public class ClickPicker : MonoBehaviour {
         }
     }
     void CubeSwitch(int matchIndex) {
-        if (currentGood.greyShaped == lastClicked.greyShaped && currentGood.greyColored == lastClicked.greyColored){
-            StartCoroutine(CombineGoodFly(lastClicked));
-            if (lastClicked.transform.parent.localScale != Vector3.one) active.transform.parent.localScale *= 1.5f;
-            switch (matchIndex) {
-                case 0:
-                    if (currentGood.greyShaped == lastClicked.greyShaped && currentGood.greyColored == lastClicked.greyColored) {
-                        currentGood.GreyColor(); currentGood.GreyShape();
-                    }
-                    break;
-                case 1:
-                    currentGood.GreyShape();
-                    break;
-                case 2:
-                    currentGood.GreyColor();
-                    break;
-                case 3:
-
-                    break;
-                default: break;
-            }
+        switch (matchIndex) {
+            case 0:
+                print("case0");
+                ClicksReset();
+                break;
+            case 1:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                Invoke("ScaleCombine", 0.0f);
+                print("case1");
+                break;
+            case 2:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyColor();
+                print("case2");
+                break;
+            case 3:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyShape();
+                print("case3");
+                break;
+            case 4:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyShape();
+                currentGood.GreyColor();
+                print("case4");
+                break;
+            default: break;
         }
     }
+    
 
     void BoostSwitch(int matchIndex) {
 
@@ -98,25 +119,33 @@ public class ClickPicker : MonoBehaviour {
     void BombSwitch(int matchIndex) {
 
     }
-
-    IEnumerator CombineGoodFly(GoodParam flyer) {
-        while (Vector3.Distance(flyer.transform.position, active.transform.position) > 1) {
-            flyer.transform.position = Vector3.Lerp(flyer.transform.position, active.transform.position, 0.2f);
-            yield return null;
-        }
-        Destroy(flyer.gameObject);
+       
+    void ClicksReset(){
+        active.GetComponent<Animator>().SetTrigger("stop");
+        lastClicked.GetComponent<Animator>().SetTrigger("stop");
         active = null;
-        currentGood.GetComponent<Animator>().SetTrigger("stop");
+        lastClicked = null;
+        beforeLastClicked = null;
     }
+
+    void ScaleCombine(){
+        int summScale = active.scaleCounter + lastClicked.scaleCounter;
+        active.scaleCounter = summScale;        
+    }
+
+    // clicked obj preview
+
+    public GoodParam currentV;
+    public GoodParam activeV;
+    public GoodParam lastClickedV;
+    public GoodParam beforeLastClickedV;
+
+    void Update(){
+        currentV = currentGood;
+        activeV = active;
+        lastClickedV = lastClicked;
+        beforeLastClickedV = beforeLastClicked;
+    }
+
 }
 
-// Clicks Preview
-//public GoodParam activeV;
-//public GoodParam lastClickedV;
-//public GoodParam beforeLastClickedV;
-
-//void Update() {
-//    activeV = active;
-//    lastClickedV = lastClicked;
-//    beforeLastClickedV = beforeLastClicked;
-//}

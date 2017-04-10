@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class GoodParam : MonoBehaviour {
 
+    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRendererSymbol;
+
     public int ShapeIndex;
     public int ColorIndex;
     public int SymbolIndex;
 
     public bool greyShaped;
-    public bool greyColored;    
+    public bool greyColored;
+
+    public int ScaleIndex = 1;
+    public int scaleCounter = 1;
+    public int maxScale = 3;
+    int currentScale;   
     
     void Awake() {
         switch (SymbolIndex) {
@@ -22,24 +30,48 @@ public class GoodParam : MonoBehaviour {
             default: break;}
         ColorIndex = Random.Range(0, GoodsParamsHolder.colors.Length);
 
-        GetComponent<SpriteRenderer>().sprite = GoodsParamsHolder.shapes[ShapeIndex];
-        GetComponent<SpriteRenderer>().color = GoodsParamsHolder.colors[ColorIndex];
-        transform.GetChild(0).GetComponentInChildren<SpriteRenderer>().sprite = GoodsParamsHolder.symbols[SymbolIndex];
+        spriteRenderer.sprite = GoodsParamsHolder.shapes[ShapeIndex];
+        spriteRenderer.color = GoodsParamsHolder.colors[ColorIndex];
+        spriteRendererSymbol.sprite = GoodsParamsHolder.symbols[SymbolIndex];
+
+        currentScale = scaleCounter;
+    }
+
+    private void Update() {
+        if (scaleCounter != currentScale) ScaleUpdater();
     }
 
     void OnMouseDown() {
-        print("clicked");
+        //print("clicked");
         ClickPicker.SwithClicks(this);        
     }
 
     public void GreyColor() {
-        GetComponent<SpriteRenderer>().color = new Color(0.6f, 0.6f, 0.6f, 0.7f);
+        spriteRenderer.color = new Color(0.6f, 0.6f, 0.6f, 0.7f);
         ColorIndex = 10;
         greyColored = true;
     }       
     
     public void GreyShape() {
-        GetComponent<SpriteRenderer>().sprite = GoodsParamsHolder.shapes[15];
+        spriteRenderer.sprite = GoodsParamsHolder.shapes[15];
+        ShapeIndex = 15;
         greyShaped = true;
-    } 
+    }      
+
+    void ScaleUpdater() {        
+        scaleCounter = scaleCounter > 4 ? 4 : scaleCounter;
+        scaleCounter = scaleCounter < 1 ? 0 : scaleCounter;
+        switch (scaleCounter) {
+            case 2:
+                ScaleIndex = 2;
+                spriteRenderer.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+                break;
+            case 4:
+                ScaleIndex = 3;
+                spriteRenderer.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+                break;
+            default:
+            break;
+        }        
+    }
 }
