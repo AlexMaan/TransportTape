@@ -16,8 +16,8 @@ public class GoodParam : MonoBehaviour {
 
     public int ScaleIndex = 1;
     public int scaleCounter = 1;
-    public int maxScale = 3;
-    int currentScale;   
+    //public int maxScale = 3;
+    public int currentScale;   
     
     void Awake() {
         switch (SymbolIndex) {
@@ -35,10 +35,12 @@ public class GoodParam : MonoBehaviour {
         spriteRendererSymbol.sprite = GoodsParamsHolder.symbols[SymbolIndex];
 
         currentScale = scaleCounter;
+        if (Random.Range(0f, 1f) < 0.2f) { scaleCounter = 2; ScaleUpdater(); }
+        else spriteRenderer.gameObject.transform.position += new Vector3(Random.Range(-0.4f, 0.4f), Random.Range(-0.4f, 0.4f), 0);
     }
 
     private void Update() {
-        if (scaleCounter != currentScale) ScaleUpdater();
+        if (scaleCounter != currentScale)  ScaleUpdater();
     }
 
     void OnMouseDown() {
@@ -66,12 +68,15 @@ public class GoodParam : MonoBehaviour {
                 ScaleIndex = 2;
                 spriteRenderer.transform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
                 break;
+            case 3:
+                goto case 2;
             case 4:
                 ScaleIndex = 3;
                 spriteRenderer.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
                 break;
             default:
             break;
-        }        
+        }
+        currentScale = scaleCounter;      
     }
 }

@@ -36,6 +36,9 @@ public class ClickPicker : MonoBehaviour {
                 PlayAmins(); }
 
             if (goodIsClicked != null) goodIsClicked();
+        //    goto Function;
+        //Function:
+        //    print("cool");
         }
     }
 
@@ -51,6 +54,7 @@ public class ClickPicker : MonoBehaviour {
             yield return null;
         }
         Destroy(flyer.gameObject);
+        //Destroy(active.gameObject);
         active = null;
         currentGood.GetComponent<Animator>().SetTrigger("stop");
     }
@@ -88,24 +92,30 @@ public class ClickPicker : MonoBehaviour {
                 break;
             case 1:
                 StartCoroutine(CombineGoodFly(lastClicked));
-                Invoke("ScaleCombine", 0.0f);
-                print("case1");
+                ScaleCombine();
+                //print("case1");
                 break;
             case 2:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyColor();
-                print("case2");
+                //print("case2");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
                 break;
             case 3:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyShape();
-                print("case3");
+                //print("case3");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
                 break;
             case 4:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyShape();
                 currentGood.GreyColor();
-                print("case4");
+                //print("case4");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
                 break;
             default: break;
         }
@@ -130,7 +140,7 @@ public class ClickPicker : MonoBehaviour {
 
     void ScaleCombine(){
         int summScale = active.scaleCounter + lastClicked.scaleCounter;
-        active.scaleCounter = summScale;        
+        active.scaleCounter = summScale;
     }
 
     // clicked obj preview
@@ -146,6 +156,6 @@ public class ClickPicker : MonoBehaviour {
         lastClickedV = lastClicked;
         beforeLastClickedV = beforeLastClicked;
     }
-
+    
 }
 
