@@ -14,6 +14,8 @@ public class CellGenerator : MonoBehaviour {
     public float genOffsetBasic;
     public int genModeBasic;
 
+    public float cellPosOffset;
+
     void Awake() {
         genOffset = genOffsetBasic;
         genMode = genModeBasic;
@@ -40,13 +42,14 @@ public class CellGenerator : MonoBehaviour {
 
     void CellPatternOne(){
         StartCoroutine("CellGeneration");
-        genRowsCount++;        
     }
 
     IEnumerator CellGeneration(){
         foreach (Transform spawn in cellArrays[genMode].cellSpawns) {
-            Instantiate(cell, spawn.position, Quaternion.identity, transform.parent.transform);
-            yield return new WaitForSeconds(0.05f);
+            GameObject cellObj = Instantiate(cell, spawn.position, Quaternion.identity, transform.parent.transform);
+            cellObj.GetComponent<Cell>().rowNumber = genRowsCount;
+            yield return new WaitForSeconds(cellPosOffset);
         }
+        genRowsCount++;
     }
 }

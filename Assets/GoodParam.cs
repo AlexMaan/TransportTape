@@ -36,7 +36,7 @@ public class GoodParam : MonoBehaviour {
 
         currentScale = scaleCounter;
         if (Random.Range(0f, 1f) < 0.2f) { scaleCounter = 2; ScaleUpdater(); }
-        else spriteRenderer.gameObject.transform.position += new Vector3(Random.Range(-0.4f, 0.4f), Random.Range(-0.4f, 0.4f), 0);
+        else spriteRenderer.gameObject.transform.position += new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
     }
 
     private void Update() {
