@@ -41,6 +41,7 @@ public class GoodParam : MonoBehaviour {
 
     private void Update() {
         if (scaleCounter != currentScale)  ScaleUpdater();
+        if (ScaleIndex == 3) Destroy(gameObject, 0.8f);
     }
 
     void OnMouseDown() {
