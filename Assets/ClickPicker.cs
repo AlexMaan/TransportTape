@@ -84,6 +84,7 @@ public class ClickPicker : MonoBehaviour {
             }
         }
     }
+
     void CubeSwitch(int matchIndex) {
         switch (matchIndex) {
             case 0:
@@ -119,15 +120,46 @@ public class ClickPicker : MonoBehaviour {
                 break;
             default: break;
         }
-    }
-    
-
+    }    
     void BoostSwitch(int matchIndex) {
 
     }
-
     void BombSwitch(int matchIndex) {
-
+        switch (matchIndex)
+        {
+            case 0:
+                print("case0");
+                ClicksReset();
+                break;
+            case 1:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                ScaleCombine();
+                //print("case1");
+                break;
+            case 2:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyColor();
+                //print("case2");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
+                break;
+            case 3:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyShape();
+                //print("case3");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
+                break;
+            case 4:
+                StartCoroutine(CombineGoodFly(lastClicked));
+                currentGood.GreyShape();
+                currentGood.GreyColor();
+                //print("case4");
+                Destroy(active.gameObject);
+                Destroy(lastClicked.gameObject);
+                break;
+            default: break;
+        }
     }
        
     void ClicksReset(){

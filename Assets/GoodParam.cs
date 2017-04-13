@@ -25,7 +25,7 @@ public class GoodParam : MonoBehaviour {
                 break;
             case 1: ShapeIndex = Random.Range(8, 12);
                 break;
-            case 2: ShapeIndex = Random.Range(12, 15);
+            case 2: ShapeIndex = 16; // ShapeIndex = Random.Range(16, 17);
                 break;
             default: break;}
         ColorIndex = Random.Range(0, GoodsParamsHolder.colors.Length);
