@@ -16,7 +16,7 @@ public class DamageBar : MonoBehaviour {
 
     void DamageTaken(GameObject item) {
         int damageValue;
-        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : baseDamageValue;
+        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : 0;
         slider.value += damageValue;
     }
 

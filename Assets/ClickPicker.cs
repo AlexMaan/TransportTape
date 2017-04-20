@@ -66,7 +66,7 @@ public class ClickPicker : MonoBehaviour {
             else if (active.ShapeIndex == lastClicked.ShapeIndex) i = active.greyColored || lastClicked.greyColored ? 0 : 2;
             else if (active.ColorIndex == lastClicked.ColorIndex) i = active.greyShaped  || lastClicked.greyShaped  ? 0 : 3;
             else if (active.ShapeIndex != lastClicked.ShapeIndex && active.ColorIndex != lastClicked.ColorIndex)
-                 if (!active.greyShaped && !active.greyColored && !lastClicked.greyShaped && !lastClicked.greyColored) i = 4;
+                 if (!active.greyShaped && !active.greyColored && !lastClicked.greyShaped && !lastClicked.greyColored) i = 0;
                  else i = 0;
             SymbolSwith(i);
         }
@@ -88,7 +88,7 @@ public class ClickPicker : MonoBehaviour {
     void CubeSwitch(int matchIndex) {
         switch (matchIndex) {
             case 0:
-                print("case0");
+                //print("case0");
                 ClicksReset();
                 break;
             case 1:
@@ -100,15 +100,15 @@ public class ClickPicker : MonoBehaviour {
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyColor();
                 //print("case2");
-                Destroy(active.gameObject);
-                Destroy(lastClicked.gameObject);
+                //Destroy(active.gameObject);
+                //Destroy(lastClicked.gameObject);
                 break;
             case 3:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyShape();
                 //print("case3");
-                Destroy(active.gameObject);
-                Destroy(lastClicked.gameObject);
+                //Destroy(active.gameObject);
+                //Destroy(lastClicked.gameObject);
                 break;
             case 4:
                 StartCoroutine(CombineGoodFly(lastClicked));

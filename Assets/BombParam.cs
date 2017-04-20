@@ -8,7 +8,7 @@ public class BombParam : MonoBehaviour {
     public GoodParam goodParam;
 
     void Start () {
-        spriteRenderer.color = Color.grey;
+        spriteRenderer.color = Color.black;
         goodParam.ColorIndex = 0;
         
     }
