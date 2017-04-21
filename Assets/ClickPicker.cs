@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClickPicker : MonoBehaviour {
 
+    public int plusPoints;
+
     public static GoodParam active;
     public static GoodParam lastClicked;
     public static GoodParam beforeLastClicked;
@@ -94,11 +96,13 @@ public class ClickPicker : MonoBehaviour {
             case 1:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 ScaleCombine();
+                ProgressWheel.levelProgress += plusPoints * ((float)(active.ScaleIndex * lastClicked.ScaleIndex) / 2); 
                 //print("case1");
                 break;
             case 2:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyColor();
+                ProgressWheel.levelProgress += plusPoints / 2;
                 //print("case2");
                 //Destroy(active.gameObject);
                 //Destroy(lastClicked.gameObject);
@@ -106,6 +110,7 @@ public class ClickPicker : MonoBehaviour {
             case 3:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 currentGood.GreyShape();
+                ProgressWheel.levelProgress += plusPoints / 2;
                 //print("case3");
                 //Destroy(active.gameObject);
                 //Destroy(lastClicked.gameObject);

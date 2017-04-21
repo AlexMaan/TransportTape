@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GoodsMixer : MonoBehaviour {
 
+    public int goodsVariants;
     public GoodsArray[] goodsArrays;
     public static GameObject activeGood;
     public static int genGoodCount;
@@ -17,7 +18,7 @@ public class GoodsMixer : MonoBehaviour {
 
 
     void Awake() {
-        ReloadGoods(goodsArrays[0]);
+        ReloadGoods(goodsArrays[goodsVariants]);
         MixGoods();
         //Invoke("MixGoods",2); //test
     }

@@ -8,7 +8,7 @@ public class BaseTape : MonoBehaviour {
 
 
 	void Update () {
-        translateVector = new Vector3(TapeManager.tapeSpeed*Time.deltaTime, 0, 0);
+        translateVector = new Vector3(-TapeManager.tapeSpeed*Time.deltaTime, 0, 0);
         transform.Translate(translateVector);
 	}
 }
