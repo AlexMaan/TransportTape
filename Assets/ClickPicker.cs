@@ -65,8 +65,8 @@ public class ClickPicker : MonoBehaviour {
         if (lastClicked != null) {
             int i = 0;
             if (active.ShapeIndex == lastClicked.ShapeIndex && active.ColorIndex == lastClicked.ColorIndex) i = 1;
-            else if (active.ShapeIndex == lastClicked.ShapeIndex) i = active.greyColored || lastClicked.greyColored ? 0 : 2;
-            else if (active.ColorIndex == lastClicked.ColorIndex) i = active.greyShaped  || lastClicked.greyShaped  ? 0 : 3;
+            else if (active.ShapeIndex == lastClicked.ShapeIndex) i = active.greyColored || lastClicked.greyColored ? 0 : 0;
+            else if (active.ColorIndex == lastClicked.ColorIndex) i = active.greyShaped  || lastClicked.greyShaped  ? 0 : 0;
             else if (active.ShapeIndex != lastClicked.ShapeIndex && active.ColorIndex != lastClicked.ColorIndex)
                  if (!active.greyShaped && !active.greyColored && !lastClicked.greyShaped && !lastClicked.greyColored) i = 0;
                  else i = 0;
