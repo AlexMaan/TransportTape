@@ -21,7 +21,7 @@ public class GoodParam : MonoBehaviour {
     
     void Awake() {
         switch (SymbolIndex) {
-            case 0: ShapeIndex = Random.Range(0, 8);
+            case 0: ShapeIndex = Random.Range(0, 5);
                 break;
             case 1: ShapeIndex = Random.Range(8, 12);
                 break;

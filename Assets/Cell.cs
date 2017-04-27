@@ -16,4 +16,13 @@ public class Cell : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Destroyer")) Destroy(gameObject);
     }
+
+    private void OnMouseDown() {
+        if (GetComponentInChildren<GoodParam>() == null && ClickPicker.active != null) {
+            ClickPicker.active.transform.position = transform.position + new Vector3(0, 0, -0.5f);
+            ClickPicker.active.transform.parent = transform;
+            ClickPicker.active.GetComponent<Animator>().SetTrigger("stop");
+            ClickPicker.active = null;
+        }
+    }
 }

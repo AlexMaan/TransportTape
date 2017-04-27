@@ -46,7 +46,7 @@ public class CellGenerator : MonoBehaviour {
 
     IEnumerator CellGeneration(){
         foreach (Transform spawn in cellArrays[genMode].cellSpawns) {
-            GameObject cellObj = Instantiate(cell, spawn.position, Quaternion.identity, transform.parent.transform);
+            GameObject cellObj = Instantiate(cell, spawn.position - new Vector3(0, 0, -0.05f), Quaternion.identity, transform.parent.transform);
             cellObj.GetComponent<Cell>().rowNumber = genRowsCount;
             yield return new WaitForSeconds(cellPosOffset);
         }

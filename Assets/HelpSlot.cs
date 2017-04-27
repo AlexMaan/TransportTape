@@ -21,13 +21,13 @@ public class HelpSlot : MonoBehaviour {
     public void CompareWithHelpSlot(GameObject tile) {
         foreach (MatchSlot slot in existSlots) {
             if (slot.slotShapeIndex == tile.GetComponent<GoodParam>().ShapeIndex || slot.slotColorIndex == tile.GetComponent<GoodParam>().ColorIndex) {
-                print("match");
+                //print("match");
                 CollectGood(tile, slot);
                 StartCoroutine(GoodFly(tile, slot));
                 break;
             }
             else {
-                print("do not match");
+                //print("do not match");
                 ClickPicker.active = null;
                 tile.GetComponent<Animator>().SetTrigger("stop");
             }

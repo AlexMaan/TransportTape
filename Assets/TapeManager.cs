@@ -15,7 +15,7 @@ public class TapeManager : MonoBehaviour {
     public int speedMode = 1; 
     public int roundTime;
 
-    void Awake(){
+    void Awake() {
      //singleton
         if (gameManager == null) gameManager = this;
         else Destroy(gameObject);
@@ -23,8 +23,13 @@ public class TapeManager : MonoBehaviour {
         //
         tapeSpeed = baseSpeed;
         StartCoroutine("TapeSpeedProgress");
+        StartCoroutine("TapeSdeepStartBoost");
     }
-        
+
+    void Update() {
+        viewSpeed = tapeSpeed;
+    }
+
     IEnumerator TapeSpeedProgress() {
         while(speedMode == 1) {
         tapeSpeed += speedUpK * Time.deltaTime;
@@ -32,8 +37,27 @@ public class TapeManager : MonoBehaviour {
         }
     }
 
-    
-    void Update() {
-        viewSpeed = tapeSpeed;
+    IEnumerator TapeSdeepStartBoost() {
+        float timeStamp = 10;
+        float startSpeed = tapeSpeed;
+        while (timeStamp > 0){
+            tapeSpeed = startSpeed + timeStamp;            
+            timeStamp -= Time.deltaTime * 3;
+            if (timeStamp < 0) timeStamp = 0;
+            yield return null;
+        }
+        tapeSpeed = startSpeed;
     }
+
+    IEnumerator PauseTape() {
+        print("pause!");
+        yield return null;
+    }
+
+    IEnumerator ForceTape() {
+        print("force!!!");
+        yield return null;
+    }
+
+
 }

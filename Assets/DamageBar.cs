@@ -10,6 +10,8 @@ public class DamageBar : MonoBehaviour {
     public int baseDamageValue;
     ProgressWheel progressWheel;
     public float timeProgressK;
+    float pauseUnlocker;
+    public int pauseUnlockTrigger;
 
     void Awake() {
         slider = GetComponent<Slider>();
@@ -17,14 +19,20 @@ public class DamageBar : MonoBehaviour {
         progressWheel = FindObjectOfType<ProgressWheel>();
     }
 
-    void DamageTaken(GameObject item) {
-        float damageValue;
-        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : 0.2f * baseDamageValue;
-        slider.value += damageValue;
-    }
-
     void Update() {
         if (slider.value >= slider.maxValue) { progressWheel.EndRoundTrigger(0); }
         //slider.value += timeProgressK * Time.deltaTime;
     }
+
+    void DamageTaken(GameObject item) {
+        float damageValue;
+        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : 1 * baseDamageValue;
+        slider.value += damageValue;
+        PauseUnlockCounter(damageValue);
+    }
+
+    void PauseUnlockCounter(float damageValue) {
+        pauseUnlocker += damageValue;
+        if (pauseUnlocker >= pauseUnlockTrigger) { pauseUnlocker = 0; TapeSpeedPause.pauseButtonCounter += 5; }
+    }    
 }

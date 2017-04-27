@@ -17,7 +17,7 @@ public class MatchSlot : MonoBehaviour {
     void Awake() {
         goodParams = FindObjectOfType<GoodsParamsHolder>();
         helpSlot = FindObjectOfType<HelpSlot>();
-        slotCopacity = Random.Range(10, 20);
+        slotCopacity = Random.Range(5, 10);
         slotType = Random.Range(1, 3);
         
         if(slotType == 1) {
