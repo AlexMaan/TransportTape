@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class DamageBar : MonoBehaviour {
 
     Slider slider;
-   // public static float damageBarValue;
+    // public static float damageBarValue;
+    public float damageTimeProgressK;
     public int baseDamageValue;
     ProgressWheel progressWheel;
     public float timeProgressK;
@@ -20,13 +21,14 @@ public class DamageBar : MonoBehaviour {
     }
 
     void Update() {
+        slider.value += Time.deltaTime * damageTimeProgressK; 
         if (slider.value >= slider.maxValue) { progressWheel.EndRoundTrigger(0); }
         //slider.value += timeProgressK * Time.deltaTime;
     }
 
     void DamageTaken(GameObject item) {
         float damageValue;
-        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : 1 * baseDamageValue;
+        damageValue = item.GetComponent<GoodParam>().SymbolIndex == 2 ? 5 * baseDamageValue : 0 * baseDamageValue;
         slider.value += damageValue;
         PauseUnlockCounter(damageValue);
     }

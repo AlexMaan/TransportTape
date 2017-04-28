@@ -12,7 +12,7 @@ public class HoldSlot : MonoBehaviour {
             PlacingGood();
     }
 
-    void PlacingGood() {
+    public void PlacingGood() {
         int i = 0;
         foreach(GoodParam good in holdingGoods) {
             if (good == null) {

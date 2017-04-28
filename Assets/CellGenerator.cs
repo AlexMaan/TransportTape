@@ -16,6 +16,8 @@ public class CellGenerator : MonoBehaviour {
 
     public float cellPosOffset;
 
+    public List<GameObject> emptyCells = new List<GameObject>();
+
     void Awake() {
         genOffset = genOffsetBasic;
         genMode = genModeBasic;

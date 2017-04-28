@@ -60,6 +60,6 @@ public class MatchSlot : MonoBehaviour {
 
     void OnMouseDown() {
         if (ClickPicker.active != null)
-            helpSlot.CompareWithHelpSlot(ClickPicker.active.gameObject);
+            helpSlot.CompareWithHelpSlot();
     }
 }

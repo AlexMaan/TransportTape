@@ -96,7 +96,8 @@ public class ClickPicker : MonoBehaviour {
             case 1:
                 StartCoroutine(CombineGoodFly(lastClicked));
                 ScaleCombine();
-                ProgressWheel.levelProgress += plusPoints * ((float)(active.ScaleIndex * lastClicked.ScaleIndex) / 2); 
+                ProgressWheel.levelProgress += plusPoints * ((float)(active.ScaleIndex * lastClicked.ScaleIndex) / 2);
+                TapeSpeedPause.pauseButtonCounter += 0.3f;
                 //print("case1");
                 break;
             case 2:

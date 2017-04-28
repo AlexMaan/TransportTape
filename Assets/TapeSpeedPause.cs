@@ -7,7 +7,7 @@ public class TapeSpeedPause : MonoBehaviour {
 
     Button buttonPause;
     TapeManager tapeManager;
-    public static int pauseButtonCounter;
+    public static float pauseButtonCounter;
     public int enableCounter;
 
 	void Start () {
@@ -17,12 +17,13 @@ public class TapeSpeedPause : MonoBehaviour {
 	}
 
     private void Update() {
-        if (pauseButtonCounter > enableCounter) {
-            buttonPause.interactable = true;
-        }
+        if (pauseButtonCounter > enableCounter)  buttonPause.interactable = true;
+        else buttonPause.interactable = false;
     }
 
     public void PauseTapeClick() {
+        pauseButtonCounter = 0;
+        tapeManager.StopCoroutine("PauseTape");
         tapeManager.StartCoroutine("PauseTape");
     }
 }

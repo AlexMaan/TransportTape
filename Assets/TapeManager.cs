@@ -14,6 +14,7 @@ public class TapeManager : MonoBehaviour {
     public float speedUpK;
     public int speedMode = 1; 
     public int roundTime;
+    public float pauseTime;
 
     void Awake() {
      //singleton
@@ -50,13 +51,21 @@ public class TapeManager : MonoBehaviour {
     }
 
     IEnumerator PauseTape() {
-        print("pause!");
-        yield return null;
+        float stampSpeed = tapeSpeed;
+        while (tapeSpeed >= stampSpeed * 0.2f) { tapeSpeed *= 0.99f; yield return null; }
+        tapeSpeed = stampSpeed * 0.2f;
+        yield return new WaitForSeconds(pauseTime);
+        while (tapeSpeed <= stampSpeed) { tapeSpeed *= 1.01f; yield return null; }
+        tapeSpeed = stampSpeed;
     }
 
     IEnumerator ForceTape() {
-        print("force!!!");
-        yield return null;
+        float stampSpeed = tapeSpeed;
+        while (tapeSpeed <= stampSpeed * 10f) { tapeSpeed *= 1.03f; yield return null; }
+        tapeSpeed = stampSpeed * 10f;
+        yield return new WaitForSeconds(0.5f);
+        while (tapeSpeed >= stampSpeed) { tapeSpeed *= 0.97f; yield return null; }
+        tapeSpeed = stampSpeed;
     }
 
 

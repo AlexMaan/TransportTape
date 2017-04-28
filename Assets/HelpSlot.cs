@@ -18,12 +18,15 @@ public class HelpSlot : MonoBehaviour {
         Instantiate(slotInstance);
     }
 
-    public void CompareWithHelpSlot(GameObject tile) {
+    public void CompareWithHelpSlot() {
+        GameObject tile = ClickPicker.active.gameObject;
         foreach (MatchSlot slot in existSlots) {
             if (slot.slotShapeIndex == tile.GetComponent<GoodParam>().ShapeIndex || slot.slotColorIndex == tile.GetComponent<GoodParam>().ColorIndex) {
                 //print("match");
                 CollectGood(tile, slot);
-                StartCoroutine(GoodFly(tile, slot));
+                tile.transform.SetParent(transform.root);
+                StartCoroutine(GoodFly(tile, slot));                
+                WatchHoldSlot.moved = true;
                 break;
             }
             else {

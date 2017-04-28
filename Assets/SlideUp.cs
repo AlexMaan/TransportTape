@@ -12,6 +12,6 @@ public class SlideUp : MonoBehaviour {
 
     public void HelpSlotCompare() {
         if (ClickPicker.active != null)
-        helpSlot.CompareWithHelpSlot(ClickPicker.active.gameObject);
+        helpSlot.CompareWithHelpSlot();
     }
 }
