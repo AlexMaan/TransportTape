@@ -11,29 +11,30 @@ public class CellGoodReposition : MonoBehaviour {
         cellGen = GetComponent<CellGenerator>();
     }
 
-    public void GoodReposition()
-    {
-        foreach (GameObject cell in cellGen.emptyCells){
-            if (targetCell != null && cell != null) {
-                float x =  targetCell.transform.position.x - cell.transform.position.x;
-                targetCell = x <= 0 ? cell : targetCell;
-                }
-            else targetCell = cell;
-            if (targetCell != null && ClickPicker.active != null)
-                StartCoroutine(GoodFly(targetCell.transform.position));
+    public void GoodReposition() {
+        float xLast = 0;
+        foreach (GameObject cell in cellGen.emptyCells){            
+            if (ClickPicker.active != null && cell != null) {
+                float x = ClickPicker.active.transform.position.x - cell.transform.position.x;
+                if (x < xLast) { targetCell = cell; xLast = x; }
+            }
         }
-
+        if (targetCell != null && ClickPicker.active != null)
+            StartCoroutine(GoodFly(targetCell.transform.position));
+        
     }
 
-    IEnumerator GoodFly(Vector3 targetPos){
-        //Vector3 goodPos = ClickPicker.active.transform.position;
-        //while (Vector3.Distance(goodPos, targetPos) > 0.1f) {
-        //    goodPos = Vector3.Lerp(goodPos, targetPos, 0.2f);
-        //    ClickPicker.active.transform.position = goodPos;
-        //    yield return null;
-        //}
+    IEnumerator GoodFly(Vector3 targetPos) {
+        Vector3 goodPos = ClickPicker.active.transform.position;
+        while (Vector3.Distance(goodPos, targetPos) > 1f)
+        {
+            goodPos = Vector3.Lerp(goodPos, targetPos, 0.2f);
+            ClickPicker.active.transform.position = goodPos;
+            yield return null;
+        }
         ClickPicker.active.transform.position = targetPos;
         ClickPicker.active.transform.SetParent(targetCell.transform);
+        targetCell = null;
         ClickPicker.active.GetComponent<Animator>().SetTrigger("stop");
         ClickPicker.active = null;
         yield break;

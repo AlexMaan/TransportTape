@@ -19,7 +19,8 @@ public class HelpSlot : MonoBehaviour {
     }
 
     public void CompareWithHelpSlot() {
-        GameObject tile = ClickPicker.active.gameObject;
+        GameObject tile = null;
+        if (ClickPicker.active != null) tile = ClickPicker.active.gameObject;
         foreach (MatchSlot slot in existSlots) {
             if (slot.slotShapeIndex == tile.GetComponent<GoodParam>().ShapeIndex || slot.slotColorIndex == tile.GetComponent<GoodParam>().ColorIndex) {
                 //print("match");

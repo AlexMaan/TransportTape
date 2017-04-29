@@ -14,7 +14,7 @@ public class WatchHoldSlot : MonoBehaviour {
         thisGood = GetComponent<GoodParam>();
 	}
 
-    void LateUpdate(){
+    void Update(){
         if (moved)
             if (!transform.IsChildOf(holdSlot.transform)) {
                 int i = 0;
@@ -24,5 +24,4 @@ public class WatchHoldSlot : MonoBehaviour {
                 }                
             }
     }
-
 }

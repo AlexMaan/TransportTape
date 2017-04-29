@@ -30,46 +30,44 @@ public class Swiper : MonoBehaviour {
     Vector2 secondPressPos;
     Vector2 currentSwipe;
 
-    public void Swipe()
-    {
+    public void Swipe() {
         if (Input.touches.Length > 0)
         {
             Touch t = Input.GetTouch(0);
             if (t.phase == TouchPhase.Began)
             {
-                //save began touch 2d point
                 firstPressPos = new Vector2(t.position.x, t.position.y);
             }
             if (t.phase == TouchPhase.Ended)
             {
-                //save ended touch 2d point
                 secondPressPos = new Vector2(t.position.x, t.position.y);
 
-                //create vector from the two points
                 currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
 
-                //normalize the 2d vector
-                currentSwipe.Normalize();
+                if (currentSwipe.magnitude > swipeLength)
+                {
 
-                //swipe upwards
-                if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    SwidepUp();
-                }
-                //swipe down
-                if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
-                {
-                    SwipedDown();
-                }
-                //swipe left
-                if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    //Debug.Log("left swipe");
-                }
-                //swipe right
-                if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
-                {
-                    SwipeRight();
+                    currentSwipe.Normalize();
+
+                    if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                    {
+                        //Debug.Log("up swipe");
+                        SwidepUp();
+                    }
+                    if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+                    {
+                        //Debug.Log("down swipe");
+                        SwipedDown();
+                    }
+                    if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                    {
+                        //Debug.Log("left swipe");
+                    }
+                    if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
+                    {
+                        //Debug.Log("right swipe");
+                        SwipeRight();
+                    }
                 }
             }
         }
@@ -89,18 +87,18 @@ public class Swiper : MonoBehaviour {
                 currentSwipe.Normalize();
 
                 if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) {
-                    Debug.Log("up swipe");
+                    //Debug.Log("up swipe");
                     SwidepUp();
                 }
                 if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f) {
-                    Debug.Log("down swipe");
+                    //Debug.Log("down swipe");
                     SwipedDown();
                 }
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) {
-                    Debug.Log("left swipe");
+                    //Debug.Log("left swipe");
                 }
                 if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) {
-                    Debug.Log("right swipe");
+                    //Debug.Log("right swipe");
                     SwipeRight();
                 }
             }
