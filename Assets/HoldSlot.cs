@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HoldSlot : MonoBehaviour {
 
-    public GoodParam[] holdingGoods = new GoodParam[3];
+    public List<GoodParam> holdingGoods = new List<GoodParam>();
     public Transform[] goodPositions = new Transform[3];
 
     void OnMouseDown() {
@@ -13,14 +13,20 @@ public class HoldSlot : MonoBehaviour {
     }
 
     public void PlacingGood() {
-        int i = 0;
-        foreach(GoodParam good in holdingGoods) {
-            if (good == null) {
-                holdingGoods[i] = ClickPicker.active;
-                StartCoroutine(GoodFlyToHoldSlot(ClickPicker.active, goodPositions[i]));
-                break; }
-            else i++;
-        }
+        //int i = 0;
+        //foreach(GoodParam good in holdingGoods) {
+        //    if (good == null) {
+        //        holdingGoods[i] = ClickPicker.active;
+        //        StartCoroutine(GoodFlyToHoldSlot(ClickPicker.active, goodPositions[i]));
+        //        break; }
+        //    else i++;
+        //}
+        GoodParam holdGood = ClickPicker.active;
+        holdingGoods.Add(holdGood);
+        int i = holdingGoods.IndexOf(holdGood);
+        print(i);
+        if (i <= goodPositions.Length - 1) StartCoroutine(GoodFlyToHoldSlot(holdGood, goodPositions[i]));
+        else holdingGoods.Remove(holdGood);
     }
 
     IEnumerator GoodFlyToHoldSlot(GoodParam good, Transform slot) {
