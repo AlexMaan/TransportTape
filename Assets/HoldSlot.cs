@@ -27,7 +27,7 @@ public class HoldSlot : MonoBehaviour {
         good.spriteRenderer.transform.position = good.spriteRenderer.transform.parent.transform.position;
         float timeStamp = 0;
         while (Vector3.Distance(good.transform.position, slot.position) > 0.1) {
-            good.transform.position = Vector3.Lerp(good.transform.position, slot.position, 0.2f);
+            good.transform.position = Vector3.Lerp(good.transform.position, slot.position, 0.3f);
             timeStamp += Time.deltaTime;
             if (timeStamp >= 0.4f) break;                      
             yield return null;

@@ -16,9 +16,9 @@ public class Swiper : MonoBehaviour {
         cellGoodRepos = FindObjectOfType<CellGoodReposition>();
     }
                 
-    void SwidepUp() { helpSlot.CompareWithHelpSlot(); }
-    void SwipedDown() { holdSlot.PlacingGood(); }
-    void SwipeRight() { cellGoodRepos.GoodReposition(); }
+    void SwidepUp() { if(ClickPicker.active != null) helpSlot.CompareWithHelpSlot(); }
+    void SwipedDown() { if (ClickPicker.active != null) holdSlot.PlacingGood(); }
+    void SwipeRight() { if (ClickPicker.active != null) cellGoodRepos.GoodReposition(); }
 
     void Update() {
         Swipe();

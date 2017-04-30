@@ -21,14 +21,15 @@ public class CellGoodReposition : MonoBehaviour {
         }
         if (targetCell != null && ClickPicker.active != null)
             StartCoroutine(GoodFly(targetCell.transform.position));
-        
+        WatchHoldSlot.moved = true;
+
     }
 
     IEnumerator GoodFly(Vector3 targetPos) {
         Vector3 goodPos = ClickPicker.active.transform.position;
-        while (Vector3.Distance(goodPos, targetPos) > 1f)
+        while (Vector3.Distance(goodPos, targetPos) > 0.1f)
         {
-            goodPos = Vector3.Lerp(goodPos, targetPos, 0.2f);
+            goodPos = Vector3.Lerp(goodPos, targetPos, 0.3f);
             ClickPicker.active.transform.position = goodPos;
             yield return null;
         }

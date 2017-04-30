@@ -44,9 +44,9 @@ public class HelpSlot : MonoBehaviour {
     }
 
     IEnumerator GoodFly(GameObject good, MatchSlot slot) {
-        while (Vector3.Distance(good.transform.position, slot.transform.position) > 1)
+        while (Vector3.Distance(good.transform.position, slot.transform.position) > 0.1f)
         {
-            good.transform.position = Vector3.Lerp(good.transform.position, slot.transform.position, 0.2f);
+            good.transform.position = Vector3.Lerp(good.transform.position, slot.transform.position, 0.3f);
             yield return null;
         }
         Destroy(good.gameObject);        
