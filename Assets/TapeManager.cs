@@ -52,19 +52,19 @@ public class TapeManager : MonoBehaviour {
 
     IEnumerator PauseTape() {
         float stampSpeed = tapeSpeed;
-        while (tapeSpeed >= stampSpeed * 0.2f) { tapeSpeed *= 0.98f; yield return null; }
+        while (tapeSpeed >= stampSpeed * 0.2f) { tapeSpeed *= 1 - 3 * Time.deltaTime; yield return null; }
         tapeSpeed = stampSpeed * 0.2f;
         yield return new WaitForSeconds(pauseTime);
-        while (tapeSpeed <= stampSpeed) { tapeSpeed *= 1.02f; yield return null; }
+        while (tapeSpeed <= stampSpeed) { tapeSpeed *= 1 + 3 * Time.deltaTime; yield return null; }
         tapeSpeed = stampSpeed;
     }
 
     IEnumerator ForceTape() {
         float stampSpeed = tapeSpeed;
-        while (tapeSpeed <= stampSpeed * 10f) { tapeSpeed *= 1.05f; yield return null; }
+        while (tapeSpeed <= stampSpeed * 10f) { tapeSpeed *= 1 + 5 * Time.deltaTime; yield return null; }
         tapeSpeed = stampSpeed * 10f;
-        yield return new WaitForSeconds(0.5f);
-        while (tapeSpeed >= stampSpeed) { tapeSpeed *= 0.95f; yield return null; }
+        yield return new WaitForSeconds(0.7f);
+        while (tapeSpeed >= stampSpeed) { tapeSpeed *= 1 - 5 * Time.deltaTime; yield return null; }
         tapeSpeed = stampSpeed;
     }
 
