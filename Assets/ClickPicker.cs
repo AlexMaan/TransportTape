@@ -51,6 +51,7 @@ public class ClickPicker : MonoBehaviour {
     }
 
     IEnumerator CombineGoodFly(GoodParam flyer) {
+        flyer.transform.SetParent(transform.root);
         while (Vector3.Distance(flyer.transform.position, active.transform.position) > 1) {
             flyer.transform.position = Vector3.Lerp(flyer.transform.position, active.transform.position, 0.2f);
             yield return null;

@@ -8,7 +8,7 @@ public class HoldSlot : MonoBehaviour {
     public Transform[] goodPositions = new Transform[3];
 
     void OnMouseDown() {
-        if (ClickPicker.active != null)
+        if (ClickPicker.active != null && !ClickPicker.active.transform.IsChildOf(transform))
             PlacingGood();
     }
 
@@ -23,8 +23,7 @@ public class HoldSlot : MonoBehaviour {
         //}
         GoodParam holdGood = ClickPicker.active;
         holdingGoods.Add(holdGood);
-        int i = holdingGoods.IndexOf(holdGood);
-        print(i);
+        int i = holdingGoods.IndexOf(holdGood);        
         if (i <= goodPositions.Length - 1) StartCoroutine(GoodFlyToHoldSlot(holdGood, goodPositions[i]));
         else holdingGoods.Remove(holdGood);
     }
@@ -43,4 +42,28 @@ public class HoldSlot : MonoBehaviour {
         good.transform.position = slot.position + new Vector3(0, 0, -0.1f);
         ClickPicker.active = null;        
     }
+
+    int childNlast;
+    void Awake() {
+        childNlast = transform.childCount;
+    }
+
+    void Update() {
+        if (transform.childCount != childNlast ) {
+            print("childChange");
+            int i = 0;
+            foreach (GoodParam good in holdingGoods) {
+                if (good == null) { holdingGoods.Remove(good); break; }
+                if (!good.transform.IsChildOf(transform)) { holdingGoods.Remove(good); break; }
+                }
+            foreach (GoodParam good in holdingGoods) {
+                good.transform.position = goodPositions[i].position + new Vector3(0, 0, -0.1f); ;
+                i++;
+                print("cool");
+                }
+                childNlast = transform.childCount;
+        }
+    }
+
+
 }

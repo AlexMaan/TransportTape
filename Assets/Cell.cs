@@ -32,6 +32,7 @@ public class Cell : MonoBehaviour {
     }
 
     private void Update() {
+        if (transform.position.x < -20) Destroy(gameObject);
         if (!isEmpty && transform.childCount == 0) { cellGen.emptyCells.Add(gameObject); isEmpty = true; }
         if (isEmpty && transform.childCount != 0) { cellGen.emptyCells.Remove(gameObject); isEmpty = false; } 
     }
