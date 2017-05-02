@@ -27,7 +27,7 @@ public class CellGoodReposition : MonoBehaviour {
         Vector3 goodPos = ClickPicker.active.transform.position;
         while (Vector3.Distance(goodPos, targetPos) > 0.1f)
         {
-            goodPos = Vector3.Lerp(goodPos, targetPos, 0.3f);
+            goodPos = Vector3.Lerp(goodPos, targetPos, 30f * Time.deltaTime);
             ClickPicker.active.transform.position = goodPos;
             yield return null;
         }
