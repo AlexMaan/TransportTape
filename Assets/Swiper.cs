@@ -21,7 +21,7 @@ public class Swiper : MonoBehaviour {
     void SwipeRight() { if (ClickPicker.active != null) cellGoodRepos.GoodReposition(); }
 
     void Update() {
-        Swipe();
+        //Swipe();
         SwipeMouse();
     }
 

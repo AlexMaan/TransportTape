@@ -40,7 +40,7 @@ public class HoldSlot : MonoBehaviour {
         good.GetComponent<Animator>().SetTrigger("stop");
         good.transform.parent = transform;
         good.transform.position = slot.position + new Vector3(0, 0, -0.1f);
-        ClickPicker.active = null;        
+        ClickPicker.active = null;             
     }
 
     int childNlast;
@@ -50,7 +50,7 @@ public class HoldSlot : MonoBehaviour {
 
     void Update() {
         if (transform.childCount != childNlast ) {
-            print("childChange");
+            //print("childChange");
             int i = 0;
             foreach (GoodParam good in holdingGoods) {
                 if (good == null) { holdingGoods.Remove(good); break; }
@@ -59,7 +59,6 @@ public class HoldSlot : MonoBehaviour {
             foreach (GoodParam good in holdingGoods) {
                 good.transform.position = goodPositions[i].position + new Vector3(0, 0, -0.1f); ;
                 i++;
-                print("cool");
                 }
                 childNlast = transform.childCount;
         }
