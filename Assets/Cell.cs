@@ -27,7 +27,6 @@ public class Cell : MonoBehaviour {
             ClickPicker.active.transform.parent = transform;
             ClickPicker.active.GetComponent<Animator>().SetTrigger("stop");
             ClickPicker.active = null;
-            WatchHoldSlot.moved = true;
         }
     }
 

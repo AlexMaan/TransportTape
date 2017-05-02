@@ -27,7 +27,6 @@ public class HelpSlot : MonoBehaviour {
                 CollectGood(tile, slot);
                 tile.transform.SetParent(transform.root);
                 StartCoroutine(GoodFly(tile, slot));                
-                WatchHoldSlot.moved = true;
                 break;
             }
             else {

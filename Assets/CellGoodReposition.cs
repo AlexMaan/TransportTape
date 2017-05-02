@@ -21,8 +21,6 @@ public class CellGoodReposition : MonoBehaviour {
         }
         if (targetCell != null && ClickPicker.active != null)
             StartCoroutine(GoodFly(targetCell.transform.position));
-        WatchHoldSlot.moved = true;
-
     }
 
     IEnumerator GoodFly(Vector3 targetPos) {
