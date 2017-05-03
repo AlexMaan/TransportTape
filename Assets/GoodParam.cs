@@ -35,8 +35,8 @@ public class GoodParam : MonoBehaviour {
         spriteRendererSymbol.sprite = GoodsParamsHolder.symbols[SymbolIndex];
 
         currentScale = scaleCounter;
-        if (Random.Range(0f, 1f) < 0.2f) { scaleCounter = 2; ScaleUpdater(); }
-        else spriteRenderer.gameObject.transform.position += new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f), 0);
+        if (Random.Range(0f, 1f) < 0.2f) { scaleCounter = 1; ScaleUpdater(); }
+        else spriteRenderer.gameObject.transform.position += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0);
     }
 
     private void Update() {

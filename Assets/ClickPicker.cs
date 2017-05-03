@@ -50,14 +50,14 @@ public class ClickPicker : MonoBehaviour {
         lastClicked.GetComponent<Animator>().SetTrigger("stop");
     }
 
-    IEnumerator CombineGoodFly(GoodParam flyer) {
+    IEnumerator CombineGoodFly(GoodParam flyer, bool isBomb) {
         flyer.transform.SetParent(transform.root);
         while (Vector3.Distance(flyer.transform.position, active.transform.position) > 1) {
             flyer.transform.position = Vector3.Lerp(flyer.transform.position, active.transform.position, 0.2f);
             yield return null;
         }
         Destroy(flyer.gameObject);
-        //Destroy(active.gameObject);
+        if(!isBomb) Destroy(active.gameObject);
         active = null;
         currentGood.GetComponent<Animator>().SetTrigger("stop");
     }
@@ -95,14 +95,14 @@ public class ClickPicker : MonoBehaviour {
                 ClicksReset();
                 break;
             case 1:
-                StartCoroutine(CombineGoodFly(lastClicked));
-                ScaleCombine();
+                StartCoroutine(CombineGoodFly(lastClicked, false));
+                //ScaleCombine();
                 ProgressWheel.levelProgress += plusPoints * ((float)(active.ScaleIndex * lastClicked.ScaleIndex) / 2);
                 TapeSpeedPause.pauseButtonCounter += 0.3f;
                 //print("case1");
                 break;
             case 2:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, false));
                 currentGood.GreyColor();
                 ProgressWheel.levelProgress += plusPoints / 2;
                 //print("case2");
@@ -110,7 +110,7 @@ public class ClickPicker : MonoBehaviour {
                 //Destroy(lastClicked.gameObject);
                 break;
             case 3:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, false));
                 currentGood.GreyShape();
                 ProgressWheel.levelProgress += plusPoints / 2;
                 //print("case3");
@@ -118,7 +118,7 @@ public class ClickPicker : MonoBehaviour {
                 //Destroy(lastClicked.gameObject);
                 break;
             case 4:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, false));
                 currentGood.GreyShape();
                 currentGood.GreyColor();
                 //print("case4");
@@ -139,26 +139,26 @@ public class ClickPicker : MonoBehaviour {
                 ClicksReset();
                 break;
             case 1:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, true));
                 ScaleCombine();
                 //print("case1");
                 break;
             case 2:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, true));
                 currentGood.GreyColor();
                 //print("case2");
                 Destroy(active.gameObject);
                 Destroy(lastClicked.gameObject);
                 break;
             case 3:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, true));
                 currentGood.GreyShape();
                 //print("case3");
                 Destroy(active.gameObject);
                 Destroy(lastClicked.gameObject);
                 break;
             case 4:
-                StartCoroutine(CombineGoodFly(lastClicked));
+                StartCoroutine(CombineGoodFly(lastClicked, true));
                 currentGood.GreyShape();
                 currentGood.GreyColor();
                 //print("case4");
