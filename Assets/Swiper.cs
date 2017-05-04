@@ -119,9 +119,11 @@ public class Swiper : MonoBehaviour {
         foreach (GoodParam good in selectedGoods) {
             if (good != null) { Destroy(good.gameObject); }
             goodsCollected++;
+            ProgressWheel.levelProgress += 0.75f;
         }
         if(ClickPicker.active.gameObject != null) Destroy(ClickPicker.active.gameObject);
         selectedGoods.Clear();
+        ProgressWheel.levelProgress += 0.75f;
 
         return goodsCollected + 1;
     }
