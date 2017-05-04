@@ -49,6 +49,15 @@ public class GoodParam : MonoBehaviour {
         ClickPicker.SwithClicks(this);        
     }
 
+    private void OnMouseEnter() {
+        if (Swiper.mousePressed && !Swiper.selectedGoods.Contains(this) && ClickPicker.active != null) {
+            if (ShapeIndex == ClickPicker.active.ShapeIndex && ColorIndex == ClickPicker.active.ColorIndex && ClickPicker.active != this) {
+                Swiper.selectedGoods.Add(this);
+                this.GetComponent<Animator>().SetTrigger("idle");
+            }
+        }        
+    }
+
     public void GreyColor() {
         spriteRenderer.color = new Color(0.6f, 0.6f, 0.6f, 0.7f);
         ColorIndex = 10;

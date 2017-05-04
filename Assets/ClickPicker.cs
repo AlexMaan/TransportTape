@@ -60,6 +60,7 @@ public class ClickPicker : MonoBehaviour {
         if(!isBomb) Destroy(active.gameObject);
         active = null;
         currentGood.GetComponent<Animator>().SetTrigger("stop");
+        Swiper.selectedGoods.Clear();
     }
 
     void ClickLogic() {

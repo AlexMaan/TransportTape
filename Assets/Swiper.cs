@@ -8,6 +8,9 @@ public class Swiper : MonoBehaviour {
     HoldSlot holdSlot;
     CellGoodReposition cellGoodRepos;
     public float swipeLength;
+    public static bool mousePressed;
+    public static List<GoodParam> selectedGoods = new List<GoodParam>();
+    public List<GoodParam> viewSelected;
 
 
     private void Awake() {
@@ -23,6 +26,7 @@ public class Swiper : MonoBehaviour {
     void Update() {
         //Swipe();
         SwipeMouse();
+        viewSelected = selectedGoods;
     }
 
     //inside class
@@ -76,13 +80,15 @@ public class Swiper : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0)) {
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            mousePressed = true;
         }
         if (Input.GetMouseButtonUp(0)) {
             secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            mousePressed = false;
 
             currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);            
 
-            if (currentSwipe.magnitude > swipeLength) {
+            if (currentSwipe.magnitude > swipeLength && selectedGoods.Count ==0) {
 
                 currentSwipe.Normalize();
 
@@ -102,7 +108,21 @@ public class Swiper : MonoBehaviour {
                     SwipeRight();
                 }
             }
+
+            if (selectedGoods.Count != 0) PickUpGoods();
         }
     }
     
+
+    int PickUpGoods() {
+        int goodsCollected = 0;
+        foreach (GoodParam good in selectedGoods) {
+            if (good != null) { Destroy(good.gameObject); }
+            goodsCollected++;
+        }
+        if(ClickPicker.active.gameObject != null) Destroy(ClickPicker.active.gameObject);
+        selectedGoods.Clear();
+
+        return goodsCollected + 1;
+    }
 }
