@@ -9,7 +9,7 @@ public class BombParam : MonoBehaviour {
 
     void Start () {
         spriteRenderer.color = Color.black;
-        goodParam.ColorIndex = 0;
+        goodParam.ColorIndex = 6;
         
     }
 }

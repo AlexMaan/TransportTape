@@ -11,12 +11,14 @@ public class Swiper : MonoBehaviour {
     public static bool mousePressed;
     public static List<GoodParam> selectedGoods = new List<GoodParam>();
     public List<GoodParam> viewSelected;
+    public Booster booster;
 
 
     private void Awake() {
         helpSlot = FindObjectOfType<HelpSlot>();
         holdSlot = FindObjectOfType<HoldSlot>();
         cellGoodRepos = FindObjectOfType<CellGoodReposition>();
+        booster = FindObjectOfType<Booster>();
     }
                 
     void SwidepUp() { if(ClickPicker.active != null) helpSlot.CompareWithHelpSlot(); }
@@ -114,17 +116,21 @@ public class Swiper : MonoBehaviour {
     }
     
 
-    int PickUpGoods() {
+    void PickUpGoods() {
         int goodsCollected = 0;
+        Vector3 lastGoodPos = new Vector3();
+        int effectN = new int();
         foreach (GoodParam good in selectedGoods) {
-            if (good != null) { Destroy(good.gameObject); }
+            if (good != null) { good.GetComponent<Animator>().SetTrigger("collect"); Destroy(good.gameObject, 0.4f); }
             goodsCollected++;
-            ProgressWheel.levelProgress += 0.75f;
+            ProgressWheel.levelProgress += 0.75f * goodsCollected;
+            lastGoodPos = good.transform.position;
+            effectN = good.ColorIndex;
+
         }
-        if(ClickPicker.active.gameObject != null) Destroy(ClickPicker.active.gameObject);
+        if (ClickPicker.active.gameObject != null) { ClickPicker.active.GetComponent<Animator>().SetTrigger("collect"); Destroy(ClickPicker.active.gameObject, 0.4f); }
         selectedGoods.Clear();
         ProgressWheel.levelProgress += 0.75f;
-
-        return goodsCollected + 1;
+        booster.LaunchBoostEffect(effectN, lastGoodPos, goodsCollected + 1);            
     }
 }

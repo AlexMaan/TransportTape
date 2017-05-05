@@ -7,7 +7,7 @@ public class TapeManager : MonoBehaviour {
     TapeManager gameManager;
     public static float tapeSpeed;
     public static int points = 0;
-    public static CubeObjectPrim lastClickedObj;
+    //public static CubeObjectPrim lastClickedObj;
 
     public float viewSpeed;
     public float baseSpeed;
