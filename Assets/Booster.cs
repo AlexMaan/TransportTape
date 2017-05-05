@@ -5,6 +5,7 @@ using UnityEngine;
 public class Booster : MonoBehaviour {
 
     public GameObject bombPrefab;
+    public GameObject pausePrefab;
     public static int numberOfGoodsSelected;
 
     public void LaunchBoostEffect(int effectN, Vector3 effectPos, int collectedGoods) {
@@ -32,6 +33,9 @@ public class Booster : MonoBehaviour {
     }
 
     void PauseIt() {
-        print("pause");
+        Instantiate(pausePrefab);
+        TapeManager tapeManager = FindObjectOfType<TapeManager>();
+        tapeManager.StopCoroutine("PauseTape");
+        tapeManager.StartCoroutine("PauseTape");
     }
 }
