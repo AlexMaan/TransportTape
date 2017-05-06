@@ -14,13 +14,13 @@ public class Booster : MonoBehaviour {
             switch (effectN) {
                 case 6: StartCoroutine(BombIt(effectPos));
                     break;
-                case 0: PauseIt();
+                case 0: ReshapeIt(); 
                     break;
-                case 1: goto case 0;
-                case 2: goto case 0;
+                case 1: PauseIt();
+                    break;
+                case 2: goto case 1;
                 case 3: goto case 0;
-                case 4: goto case 6;
-                case 5: goto case 0;
+                case 4: goto case 6;                
                 default:
                     break;
             }
@@ -37,5 +37,9 @@ public class Booster : MonoBehaviour {
         TapeManager tapeManager = FindObjectOfType<TapeManager>();
         tapeManager.StopCoroutine("PauseTape");
         tapeManager.StartCoroutine("PauseTape");
+    }
+
+    void ReshapeIt() {
+        FindObjectOfType<Reshaper>().ReshapeGoods(ClickPicker.active);
     }
 }

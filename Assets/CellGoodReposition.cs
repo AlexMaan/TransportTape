@@ -11,31 +11,31 @@ public class CellGoodReposition : MonoBehaviour {
         cellGen = GetComponent<CellGenerator>();
     }
 
-    public void GoodReposition() {
+    public void GoodReposition(GoodParam good) {
         float xLast = 0;
         foreach (GameObject cell in cellGen.emptyCells){            
-            if (ClickPicker.active != null && cell != null) {
-                float x = ClickPicker.active.transform.position.x - cell.transform.position.x;
+            if (good != null && cell != null) {
+                float x = good.transform.position.x - cell.transform.position.x;
                 if (x < xLast) { targetCell = cell; xLast = x; }
             }
         }
-        if (targetCell != null && ClickPicker.active != null)
-            StartCoroutine(GoodFly(targetCell.transform.position));
+        if (targetCell != null && good != null)
+            StartCoroutine(GoodFly(good, targetCell.transform.position));
     }
 
-    IEnumerator GoodFly(Vector3 targetPos) {
-        Vector3 goodPos = ClickPicker.active.transform.position;
+    IEnumerator GoodFly(GoodParam good, Vector3 targetPos) {
+        Vector3 goodPos = good.transform.position;
+        good.transform.SetParent(targetCell.transform);
+        targetCell = null;
         while (Vector3.Distance(goodPos, targetPos) > 0.1f)
         {
             goodPos = Vector3.Lerp(goodPos, targetPos, 30f * Time.deltaTime);
-            ClickPicker.active.transform.position = goodPos;
+            good.transform.position = goodPos;
             yield return null;
         }
-        ClickPicker.active.transform.position = targetPos;
-        ClickPicker.active.transform.SetParent(targetCell.transform);
-        targetCell = null;
-        ClickPicker.active.GetComponent<Animator>().SetTrigger("stop");
-        ClickPicker.active = null;
+        good.transform.position = targetPos;        
+        good.GetComponent<Animator>().SetTrigger("stop");
+        if (ClickPicker.active = good) ClickPicker.active = null;
         yield break;
     }
 }

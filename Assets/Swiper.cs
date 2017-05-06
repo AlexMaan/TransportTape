@@ -23,7 +23,7 @@ public class Swiper : MonoBehaviour {
                 
     void SwidepUp() { if(ClickPicker.active != null) helpSlot.CompareWithHelpSlot(); }
     void SwipedDown() { if (ClickPicker.active != null) holdSlot.PlacingGood(); }
-    void SwipeRight() { if (ClickPicker.active != null) cellGoodRepos.GoodReposition(); }
+    void SwipeRight() { if (ClickPicker.active != null) cellGoodRepos.GoodReposition(ClickPicker.active); }
 
     void Update() {
         //Swipe();
