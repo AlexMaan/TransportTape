@@ -6,6 +6,7 @@ public class Booster : MonoBehaviour {
 
     public GameObject bombPrefab;
     public GameObject pausePrefab;
+    public GameObject floorPrefab;
     public static int numberOfGoodsSelected;
 
     public void LaunchBoostEffect(int effectN, Vector3 effectPos, int collectedGoods) {
@@ -18,7 +19,8 @@ public class Booster : MonoBehaviour {
                     break;
                 case 1: PauseIt();
                     break;
-                case 2: goto case 1;
+                case 2: FloorIt();
+                    break;
                 case 3: goto case 0;
                 case 4: goto case 6;                
                 default:
@@ -41,5 +43,9 @@ public class Booster : MonoBehaviour {
 
     void ReshapeIt() {
         FindObjectOfType<Reshaper>().ReshapeGoods(ClickPicker.active);
+    }
+
+    void FloorIt() {
+        Instantiate(floorPrefab);
     }
 }
