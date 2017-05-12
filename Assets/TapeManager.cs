@@ -17,10 +17,11 @@ public class TapeManager : MonoBehaviour {
     public float pauseTime;
 
     void Awake() {
-     //singleton
-        if (gameManager == null) gameManager = this;
-        else Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        if (PlayerPrefs.HasKey("setupStartSpeed")) baseSpeed = float.Parse(PlayerPrefs.GetString("setupStartSpeed"));
+        //singleton
+        //if (gameManager == null) gameManager = this;
+        //else Destroy(gameObject);
+        //DontDestroyOnLoad(gameObject);
         //
         tapeSpeed = baseSpeed;
         StartCoroutine("TapeSpeedProgress");

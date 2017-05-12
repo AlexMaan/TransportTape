@@ -21,7 +21,7 @@ public class MatchSlot : MonoBehaviour {
         slotType = Random.Range(1, 3);
         
         if(slotType == 1) {
-            int shape = Random.Range(0, 5);
+            int shape = Random.Range(0, 3);
             spriteRen.sprite = goodParams.shapesBase[shape];
             slotShapeIndex = shape;
             slotColorIndex = 100;
