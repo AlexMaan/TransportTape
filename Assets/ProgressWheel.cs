@@ -16,6 +16,10 @@ public class ProgressWheel : MonoBehaviour {
         roundIsEnded(roundResult);
     }
 
+    void Awake() {
+        levelProgress = 0;
+    }
+
     void Update() {
         if (levelProgress >= slider.maxValue) { levelProgress = slider.maxValue; roundIsEnded(1); }
         slider.value = levelProgress;

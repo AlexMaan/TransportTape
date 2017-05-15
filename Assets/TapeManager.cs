@@ -18,6 +18,7 @@ public class TapeManager : MonoBehaviour {
 
     void Awake() {
         if (PlayerPrefs.HasKey("setupStartSpeed")) baseSpeed = float.Parse(PlayerPrefs.GetString("setupStartSpeed"));
+        if (PlayerPrefs.HasKey("setupSpeedProgress")) speedUpK = float.Parse(PlayerPrefs.GetString("setupSpeedProgress"));
         //singleton
         //if (gameManager == null) gameManager = this;
         //else Destroy(gameObject);

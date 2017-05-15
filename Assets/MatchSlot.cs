@@ -14,14 +14,17 @@ public class MatchSlot : MonoBehaviour {
     public int slotShapeIndex;
     public int slotColorIndex;
 
+    int shapesNumber = 3;
+
     void Awake() {
         goodParams = FindObjectOfType<GoodsParamsHolder>();
         helpSlot = FindObjectOfType<HelpSlot>();
-        slotCopacity = Random.Range(5, 10);
+        slotCopacity = Random.Range(5, 7);
         slotType = Random.Range(1, 3);
-        
-        if(slotType == 1) {
-            int shape = Random.Range(0, 3);
+        if (PlayerPrefs.HasKey("setupShapes")) shapesNumber = int.Parse(PlayerPrefs.GetString("setupShapes"));
+
+        if (slotType == 1) {
+            int shape = Random.Range(0, shapesNumber);
             spriteRen.sprite = goodParams.shapesBase[shape];
             slotShapeIndex = shape;
             slotColorIndex = 100;

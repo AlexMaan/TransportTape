@@ -18,7 +18,7 @@ public class Floor : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         goodCollider.GetComponent<Animator>().SetTrigger("collect");
         Destroy(goodCollider.gameObject, 0.4f);
-        ProgressWheel.levelProgress += 0.25f;
+        ProgressWheel.levelProgress += ClickPicker.plusPoints * 0.05f;
     }
 
     void DestroyIt() {

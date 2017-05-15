@@ -17,11 +17,14 @@ public class GoodParam : MonoBehaviour {
     public int ScaleIndex = 1;
     public int scaleCounter = 1;
     //public int maxScale = 3;
-    public int currentScale;   
+    public int currentScale;
+
+    int shapesNumber = 3;  
     
     void Awake() {
+        if (PlayerPrefs.HasKey("setupShapes")) shapesNumber = int.Parse(PlayerPrefs.GetString("setupShapes"));
         switch (SymbolIndex) {
-            case 0: ShapeIndex = Random.Range(0, 3);
+            case 0: ShapeIndex = Random.Range(0, shapesNumber);
                 break;
             case 1: ShapeIndex = Random.Range(8, 12);
                 break;

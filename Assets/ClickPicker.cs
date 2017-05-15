@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ClickPicker : MonoBehaviour {
 
-    public int plusPoints;
+    public static int plusPoints;
 
     public static GoodParam active;
     public static GoodParam lastClicked;
@@ -17,6 +17,7 @@ public class ClickPicker : MonoBehaviour {
 
     void Awake() {
         goodIsClicked += ClickLogic;
+        if (PlayerPrefs.HasKey("setupProgress")) plusPoints = int.Parse(PlayerPrefs.GetString("setupProgress"));
     }
 
     public static void SwithClicks(GoodParam current) {        

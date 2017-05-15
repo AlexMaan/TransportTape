@@ -12,6 +12,7 @@ public class HelpSlot : MonoBehaviour {
     void Start() {
         InstSlot();
         InstSlot();
+        if (PlayerPrefs.HasKey("setupProgress")) slotPoints = int.Parse(PlayerPrefs.GetString("setupProgress")) / 2;
     }
 
     public void InstSlot() {

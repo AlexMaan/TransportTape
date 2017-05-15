@@ -21,6 +21,7 @@ public class CellGenerator : MonoBehaviour {
     void Awake() {
         genOffset = genOffsetBasic;
         genMode = genModeBasic;
+        if (PlayerPrefs.HasKey("setupNumberRow")) genMode = int.Parse(PlayerPrefs.GetString("setupNumberRow"));
     }
 
 

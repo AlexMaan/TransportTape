@@ -10,7 +10,7 @@ public class DamageBar : MonoBehaviour {
     public float damageTimeProgressK;
     public int baseDamageValue;
     ProgressWheel progressWheel;
-    public float timeProgressK;
+    //public float timeProgressK;
     float pauseUnlocker;
     public int pauseUnlockTrigger;
 
@@ -18,6 +18,7 @@ public class DamageBar : MonoBehaviour {
         slider = GetComponent<Slider>();
         DamagePicker.damageAction += DamageTaken;
         progressWheel = FindObjectOfType<ProgressWheel>();
+        if (PlayerPrefs.HasKey("setupDamage")) damageTimeProgressK = int.Parse(PlayerPrefs.GetString("setupDamage"));
     }
 
     void Update() {

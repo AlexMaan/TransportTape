@@ -123,14 +123,14 @@ public class Swiper : MonoBehaviour {
         foreach (GoodParam good in selectedGoods) {
             if (good != null) { good.GetComponent<Animator>().SetTrigger("collect"); Destroy(good.gameObject, 0.4f); }
             goodsCollected++;
-            ProgressWheel.levelProgress += 0.75f * goodsCollected;
+            ProgressWheel.levelProgress += ClickPicker.plusPoints * 0.25f * goodsCollected;
             lastGoodPos = good.transform.position;
             effectN = good.ColorIndex;
 
         }
         if (ClickPicker.active.gameObject != null) { ClickPicker.active.GetComponent<Animator>().SetTrigger("collect"); Destroy(ClickPicker.active.gameObject, 0.4f); }
         selectedGoods.Clear();
-        ProgressWheel.levelProgress += 0.75f;
+        ProgressWheel.levelProgress += ClickPicker.plusPoints * 0.25f;
         booster.LaunchBoostEffect(effectN, lastGoodPos, goodsCollected + 1);            
     }
 }
