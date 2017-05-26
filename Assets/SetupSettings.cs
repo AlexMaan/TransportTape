@@ -71,4 +71,8 @@ public class SetupSettings : MonoBehaviour {
         InputProgress.text = defProgress.ToString();
         InputDamage.text = defDamage.ToString();        
     }
+
+    public void Exit() {
+        Application.Quit();
+    }
 }
