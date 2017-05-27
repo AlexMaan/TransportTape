@@ -11,7 +11,7 @@ public class HelpSlot : MonoBehaviour {
 
     void Start() {
         InstSlot();
-        InstSlot();
+        //InstSlot();
         if (PlayerPrefs.HasKey("setupProgress")) slotPoints = int.Parse(PlayerPrefs.GetString("setupProgress")) / 2;
     }
 
@@ -27,7 +27,8 @@ public class HelpSlot : MonoBehaviour {
                 //print("match");
                 CollectGood(tile, slot);
                 tile.transform.SetParent(transform.root);
-                StartCoroutine(GoodFly(tile, slot));                
+                StartCoroutine(GoodFly(tile, slot));
+                GetComponent<Animator>().SetTrigger("match");               
                 break;
             }
             else {

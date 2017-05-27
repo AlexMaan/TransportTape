@@ -20,7 +20,7 @@ public class MatchSlot : MonoBehaviour {
         goodParams = FindObjectOfType<GoodsParamsHolder>();
         helpSlot = FindObjectOfType<HelpSlot>();
         slotCopacity = Random.Range(5, 7);
-        slotType = Random.Range(1, 3);
+        slotType = Random.Range(2, 3);
         if (PlayerPrefs.HasKey("setupShapes")) shapesNumber = int.Parse(PlayerPrefs.GetString("setupShapes"));
 
         if (slotType == 1) {

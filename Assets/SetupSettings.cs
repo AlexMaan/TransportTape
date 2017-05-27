@@ -14,6 +14,8 @@ public class SetupSettings : MonoBehaviour {
     public int defProgress;
     public int defDamage;
     public int defShapes;
+    public int LevelStyle;
+    public Text count;
     [Space(10)]
     public InputField InputStartSpeed;
     public InputField InputSpeedProgress;
@@ -40,6 +42,7 @@ public class SetupSettings : MonoBehaviour {
         PlayerPrefs.SetString("setupProgress", InputProgress.text);
         PlayerPrefs.SetString("setupDamage", InputDamage.text);
         PlayerPrefs.SetString("setupShapes", InputShapes.text);
+        PlayerPrefs.SetInt("LevelStyle", LevelStyle);
     }
 
     public void LoadSettings() {
@@ -51,6 +54,8 @@ public class SetupSettings : MonoBehaviour {
         if (PlayerPrefs.HasKey("setupProgress")) InputProgress.text = PlayerPrefs.GetString("setupProgress");
         if (PlayerPrefs.HasKey("setupDamage")) InputDamage.text = PlayerPrefs.GetString("setupDamage");
         if (PlayerPrefs.HasKey("setupShapes")) InputShapes.text = PlayerPrefs.GetString("setupShapes");
+        if (PlayerPrefs.HasKey("LevelStyle")) LevelStyle = PlayerPrefs.GetInt("LevelStyle");
+        count.text = LevelStyle.ToString();
     }
 
     public void ResetSettings() {
@@ -74,5 +79,14 @@ public class SetupSettings : MonoBehaviour {
 
     public void Exit() {
         Application.Quit();
+    }
+
+    public void PlusStyleCount() {
+        LevelStyle++;
+        count.text = LevelStyle.ToString();
+    }
+    public void MinusStyleCount() {
+        LevelStyle--;
+        count.text = LevelStyle.ToString();
     }
 }

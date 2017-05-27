@@ -41,7 +41,7 @@ public class TapeManager : MonoBehaviour {
     }
 
     IEnumerator TapeSdeepStartBoost() {
-        float timeStamp = 10;
+        float timeStamp = 6;
         float startSpeed = tapeSpeed;
         while (timeStamp > 0){
             tapeSpeed = startSpeed + timeStamp;            
