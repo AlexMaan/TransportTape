@@ -34,7 +34,7 @@ public class MatchSlot : MonoBehaviour {
             slotShapeIndex = 100;
             slotColorIndex = color;
             spriteRen.color = goodParams.colorsBase[color];
-            spriteRen.sprite = goodParams.shapesBase[5];
+            spriteRen.sprite = goodParams.shapesBase[15];
             spriteRen.transform.localScale *= 1.2f;
         }
 
@@ -47,7 +47,7 @@ public class MatchSlot : MonoBehaviour {
 
     public void Filling() {
         slotFilling++;
-        transform.localScale *= 1 - (0.6f / slotCopacity);
+        transform.FindChild("Sprite").localScale *= 1 - (0.6f / slotCopacity);
         if (slotFilling >= slotCopacity) Invoke("RemoveSlot", 0.5f);
     }
 

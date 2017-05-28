@@ -8,8 +8,8 @@ public class DamageMarks : MonoBehaviour {
     public Slider slider;
     int[] marks = { 1, 2, 3, 4, 5 };
     public GameObject[] marksObj;
-    public float lastBarValue;
-    public float actualBarValue;
+    public float lastBarValue = 0;
+    public float actualBarValue = 0;
 
 
 	void Start () {

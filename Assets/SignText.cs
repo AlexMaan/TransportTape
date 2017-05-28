@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SignText : MonoBehaviour {
 
     public Text text;
+    public GameObject win;
+    public GameObject lose;
 
     void Awake() {
         ProgressWheel.roundIsEnded += DisplayText;
@@ -14,7 +16,7 @@ public class SignText : MonoBehaviour {
 
     void DisplayText(int roundResult) {
         text.gameObject.SetActive(true);
-        if (roundResult == 1) text.text = "You Win !";
-        else text.text = "Round Over";
+        if (roundResult == 1) { /*text.text = "You Win !";*/ lose.SetActive(false); }
+        else { /*text.text = "Round Over";*/ win.SetActive(false); }
     }
 }
