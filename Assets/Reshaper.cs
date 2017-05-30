@@ -32,12 +32,12 @@ public class Reshaper : MonoBehaviour {
                 int i = Random.Range(0f, 1f) > 0.5 ? 1 : 2;
                 if (i == 1) { good.ShapeIndex = exampleGood.ShapeIndex;
                     good.transform.FindChild("sprite").GetComponent<SpriteRenderer>().sprite = GoodsParamsHolder.shapes[good.ShapeIndex];
-                    good.transform.FindChild("Art_sprite").GetComponent<AtrGoodSprite>().SetSprite();
+                    good.transform.FindChild("Art_sprite").transform.FindChild("Art_sprite").GetComponent<AtrGoodSprite>().SetSprite();
                     good.GetComponent<Animator>().SetTrigger("appear");
                 }
                 if (i == 2) { good.ColorIndex = exampleGood.ColorIndex;
                     good.transform.FindChild("sprite").GetComponent<SpriteRenderer>().color = GoodsParamsHolder.colors[good.ColorIndex];
-                    good.transform.FindChild("Art_sprite").GetComponent<AtrGoodSprite>().SetSprite();
+                    good.transform.FindChild("Art_sprite").transform.FindChild("Art_sprite").GetComponent<AtrGoodSprite>().SetSprite();
                     good.GetComponent<Animator>().SetTrigger("appear");
                 }
             }

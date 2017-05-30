@@ -13,16 +13,16 @@ public class Booster : MonoBehaviour {
         numberOfGoodsSelected = collectedGoods;
         if (collectedGoods > 2) {
             switch (effectN) {
-                case 6: StartCoroutine(BombIt(effectPos));
+                case 1: StartCoroutine(BombIt(effectPos));
                     break;
                 case 0: ReshapeIt(); 
                     break;
-                case 1: PauseIt();
+                case 2: PauseIt();
                     break;
-                case 2: FloorIt();
+                case 3: FloorIt();
                     break;
-                case 3: goto case 0;
-                case 4: goto case 6;                
+                //case 3: goto case 0;
+                //case 4: goto case 6;                
                 default:
                     break;
             }
