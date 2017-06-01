@@ -21,7 +21,7 @@ public class Booster : MonoBehaviour {
                     break;
                 case 3: FloorIt();
                     break;
-                //case 3: goto case 0;
+                case 6: goto case 1;
                 //case 4: goto case 6;                
                 default:
                     break;

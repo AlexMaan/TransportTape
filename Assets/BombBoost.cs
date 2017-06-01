@@ -8,11 +8,13 @@ public class BombBoost : MonoBehaviour {
     public List<BlockBox> effectedBoxes = new List<BlockBox>();
     float pressStapm;
     public float pressTime;
+    public GameObject bombEffect;
 
     void Awake() {
         GetComponent<CircleCollider2D>().radius = Booster.numberOfGoodsSelected - 1;
         //GetComponentInChildren<SpriteRenderer>().gameObject.transform.localScale *= 2;
         GetComponent<Animator>().SetTrigger("appear");
+        bombEffect.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D goodCollider) {
@@ -31,6 +33,8 @@ public class BombBoost : MonoBehaviour {
     }
 
     void ExplodeBomb() {
+        bombEffect.SetActive(true);
+        bombEffect.transform.parent = transform.parent;
         pressStapm = 0;        
         foreach(GoodParam good in effectedGoods) {
             if (good != null) { ProgressWheel.levelProgress += 0.5f; good.GetComponent<Animator>().SetTrigger("collect"); Destroy(good.gameObject, 0.4f); }

@@ -12,6 +12,7 @@ public class Swiper : MonoBehaviour {
     public static List<GoodParam> selectedGoods = new List<GoodParam>();
     public List<GoodParam> viewSelected;
     public Booster booster;
+    public GameObject pointIcon;
 
 
     private void Awake() {
@@ -121,14 +122,14 @@ public class Swiper : MonoBehaviour {
         Vector3 lastGoodPos = new Vector3();
         int effectN = new int();
         foreach (GoodParam good in selectedGoods) {
-            if (good != null) { good.GetComponent<Animator>().SetTrigger("collect"); Destroy(good.gameObject, 0.4f); }
+            if (good != null) { good.GetComponent<Animator>().SetTrigger("collect"); Destroy(good.gameObject, 0.4f); Instantiate(pointIcon, good.transform.position, Quaternion.identity, good.transform.parent.transform); }
             goodsCollected++;
             ProgressWheel.levelProgress += ClickPicker.plusPoints * 0.25f * goodsCollected;
             lastGoodPos = good.transform.position;
             effectN = good.ColorIndex;
 
         }
-        if (ClickPicker.active.gameObject != null) { ClickPicker.active.GetComponent<Animator>().SetTrigger("collect"); Destroy(ClickPicker.active.gameObject, 0.4f); }
+        if (ClickPicker.active.gameObject != null) { ClickPicker.active.GetComponent<Animator>().SetTrigger("collect"); Destroy(ClickPicker.active.gameObject, 0.4f); Instantiate(pointIcon, ClickPicker.active.transform.position, Quaternion.identity, ClickPicker.active.transform.parent.transform); }
         selectedGoods.Clear();
         ProgressWheel.levelProgress += ClickPicker.plusPoints * 0.25f;
         booster.LaunchBoostEffect(effectN, lastGoodPos, goodsCollected + 1);            
