@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TapeManager : MonoBehaviour {
 
-    TapeManager gameManager;
+    public static TapeManager gameManager;
     public static float tapeSpeed;
     public static int points = 0;
     //public static CubeObjectPrim lastClickedObj;
@@ -20,9 +20,8 @@ public class TapeManager : MonoBehaviour {
         if (PlayerPrefs.HasKey("setupStartSpeed")) baseSpeed = float.Parse(PlayerPrefs.GetString("setupStartSpeed"));
         if (PlayerPrefs.HasKey("setupSpeedProgress")) speedUpK = float.Parse(PlayerPrefs.GetString("setupSpeedProgress"));
         //singleton
-        //if (gameManager == null) gameManager = this;
-        //else Destroy(gameObject);
-        //DontDestroyOnLoad(gameObject);
+        //if (gameManager == null) { gameManager = this; DontDestroyOnLoad(gameObject); }
+        //else Destroy(gameObject);        
         //
         tapeSpeed = baseSpeed;
         StartCoroutine("TapeSpeedProgress");

@@ -16,6 +16,8 @@ public class ClickPicker : MonoBehaviour {
     static GoodParam currentGood;
 
     void Awake() {
+        StopAllCoroutines();
+        active = null; lastClicked = null; beforeLastClicked = null; currentGood = null;
         goodIsClicked += ClickLogic;
         if (PlayerPrefs.HasKey("setupProgress")) plusPoints = int.Parse(PlayerPrefs.GetString("setupProgress"));
     }
@@ -197,6 +199,10 @@ public class ClickPicker : MonoBehaviour {
         lastClickedV = lastClicked;
         beforeLastClickedV = beforeLastClicked;
     }
-    
+
+    void OnDestroy() {
+        goodIsClicked -= ClickLogic;
+    }
+
 }
 
