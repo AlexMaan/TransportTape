@@ -47,7 +47,7 @@ public class MatchSlot : MonoBehaviour {
 
     public void Filling() {
         slotFilling++;
-        transform.FindChild("Sprite").localScale *= 1 - (0.6f / slotCopacity);
+        transform.Find("Sprite").localScale *= 1 - (0.6f / slotCopacity);
         if (slotFilling >= slotCopacity) Invoke("RemoveSlot", 0.5f);
     }
 
